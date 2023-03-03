@@ -1,7 +1,10 @@
 import { useCallback, useState, useEffect } from 'react';
 import useSecondsInterval from './useSecondsInterval';
 
-const useCountDown = ({ initialSeconds, initiallyRunning = false } = {}) => {
+const useCountDown = ({
+  initialSeconds = 30,
+  initiallyRunning = false,
+} = {}) => {
   const [timerCount, setTimerCount] = useState(initialSeconds);
   const [isTimerRunning, setRunning] = useState(initiallyRunning);
   const [isInPauseState, setPauseState] = useState(false);
@@ -16,7 +19,7 @@ const useCountDown = ({ initialSeconds, initiallyRunning = false } = {}) => {
     () =>
       isTimerRunning && timerCount !== minMinToRun
         ? setTimerCount((prev) => prev - 1)
-        : initialSeconds,
+        : setRunning(false),
     [isTimerRunning, initialSeconds, timerCount]
   );
 

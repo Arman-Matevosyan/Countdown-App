@@ -1,0 +1,14 @@
+.countdownBox {
+    width: 100px;
+    height: 300px;
+    background: black;
+    position: relative;
+}
+
+.timeElapsed {
+    height: 100%;
+    width: 100%;
+    background-color: aqua;
+    bottom: 0px;
+    position: absolute;
+}

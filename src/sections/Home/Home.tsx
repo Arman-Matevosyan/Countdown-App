@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Icon } from '../../assets/uiComponents/Icon';
-import { secondsToTime } from '../../helpers';
+import { ButtonGroup } from '../../components/buttonGroup';
+import { InputBar } from '../../components/inputBar';
+import { ProgressBar } from '../../components/progressBar';
 import { useCountdown } from '../../hooks';
 import styles from './Home.module.scss';
 
@@ -18,34 +19,38 @@ const Home: React.FC = () => {
     initialSeconds: time,
   });
 
+  const [currentHeight, setCurrentHeight] = useState(0);
+
   useEffect(() => {
     if (isInInitialState) {
-      setTime(0);
+      setCurrentHeight(0);
+    } else {
+      const percentage = ((time - timerCount) / time) * 100;
+
+      setCurrentHeight(percentage > 100 ? 100 : percentage);
     }
-  }, [isInInitialState]);
+  }, [isInInitialState, timerCount, time]);
 
   return (
-    <main className={styles.container} data-testid="home-container">
-      <div>
-        <form>
-          <label htmlFor="name">
-            <input
-              disabled={!isInInitialState && (isTimerRunning || isInPauseState)}
-              type="number"
-              value={time}
-              onChange={(e) => setTime(e.target.value)}
-            />
-            <p>{secondsToTime(timerCount)}</p>
-          </label>
-        </form>
+    <main data-testid="home-container">
+      <div className={styles.container}>
+        <ProgressBar currentHeight={currentHeight} />
+        <InputBar
+          isInInitialState={isInInitialState}
+          isInPauseState={isInPauseState}
+          isTimerRunning={isTimerRunning}
+          setTime={setTime}
+          time={time}
+          timerCount={timerCount}
+        />
+
+        <ButtonGroup
+          isInInitialState={isInInitialState}
+          isTimerRunning={isTimerRunning}
+          setTimer={setTimer}
+          stopTimer={stopTimer}
+        />
       </div>
-      <button onClick={setTimer}>
-        <Icon icon={isTimerRunning ? 'pause' : 'play2'} />
-      </button>
-      <button disabled={isInInitialState} onClick={stopTimer}>
-        Stop
-      </button>
-      {isTimerRunning}
     </main>
   );
 };
