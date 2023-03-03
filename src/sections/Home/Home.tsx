@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ButtonGroup } from '../../components/buttonGroup';
 import { InputBar } from '../../components/inputBar';
 import { ProgressBar } from '../../components/progressBar';
-import { useCountdown } from '../../hooks';
+import { useCountdown, useHeightCalculator } from '../../hooks';
 import styles from './Home.module.scss';
 
 const Home: React.FC = () => {
@@ -19,17 +19,11 @@ const Home: React.FC = () => {
     initialSeconds: time,
   });
 
-  const [currentHeight, setCurrentHeight] = useState(0);
-
-  useEffect(() => {
-    if (isInInitialState) {
-      setCurrentHeight(0);
-    } else {
-      const percentage = ((time - timerCount) / time) * 100;
-
-      setCurrentHeight(percentage > 100 ? 100 : percentage);
-    }
-  }, [isInInitialState, timerCount, time]);
+  const { currentHeight } = useHeightCalculator({
+    isInInitialState,
+    time,
+    timerCount,
+  });
 
   return (
     <main data-testid="home-container">
