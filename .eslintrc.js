@@ -92,8 +92,9 @@ module.exports = {
     'import/no-unresolved': 0,
     'import/extensions': 0,
     'import/prefer-default-export': 0,
+    'react/require-default-props': 'off',
     'import/no-extraneous-dependencies': [
-      'error',
+      'warn',
       {
         devDependencies: ['**/*.test.js', '**/*.spec.js'],
       },
