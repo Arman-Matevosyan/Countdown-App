@@ -1,25 +1,41 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import useSecondsInterval from './useSecondsInterval';
 
-const useCountDown = ({
-  initialSeconds = 0,
-  initiallyRunning = false,
-} = {}) => {
+const useCountDown = ({ initialSeconds, initiallyRunning = false } = {}) => {
   const [timerCount, setTimerCount] = useState(initialSeconds);
   const [isTimerRunning, setRunning] = useState(initiallyRunning);
+  const [isInPauseState, setPauseState] = useState(false);
+  const [isInInitialState, setInitialeState] = useState(true);
+  const minMinToRun = 0;
+
+  useEffect(() => {
+    setTimerCount(initialSeconds);
+  }, [initialSeconds]);
 
   const tick = useCallback(
-    () => (isTimerRunning ? setTimerCount((prev) => prev - 1) : initialSeconds),
-    [isTimerRunning, initialSeconds]
+    () =>
+      isTimerRunning && timerCount !== minMinToRun
+        ? setTimerCount((prev) => prev - 1)
+        : initialSeconds,
+    [isTimerRunning, initialSeconds, timerCount]
   );
 
-  const setTimer = () =>
-    isTimerRunning ? setRunning(false) : setRunning(true);
+  const setTimer = () => {
+    if (!isTimerRunning && initialSeconds) {
+      setRunning(true);
+      setInitialeState(false);
+      setPauseState(false);
+    } else {
+      setPauseState(true);
+      setRunning(false);
+    }
+  };
 
   const resetTimer = () => setTimerCount(initialSeconds);
 
   const stopTimer = () => {
-    setTimer();
+    setInitialeState(true);
+    setRunning(false);
     resetTimer();
   };
 
@@ -30,6 +46,8 @@ const useCountDown = ({
     resetTimer,
     isTimerRunning,
     timerCount,
+    isInInitialState,
+    isInPauseState,
     stopTimer,
   };
 };

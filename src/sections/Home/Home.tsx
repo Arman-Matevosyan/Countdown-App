@@ -1,26 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Icon } from '../../assets/uiComponents/Icon';
+import { secondsToTime } from '../../helpers';
 import { useCountdown } from '../../hooks';
-import useInput from '../../hooks/useInput';
 import styles from './Home.module.scss';
 
 const Home: React.FC = () => {
-  const { resetTimer, isTimerRunning, timerCount, setTimer, stopTimer } =
-    useCountdown({
-      initialSeconds: 30,
-    });
+  const [time, setTime] = useState(0);
+
+  const {
+    isTimerRunning,
+    isInInitialState,
+    isInPauseState,
+    timerCount,
+    setTimer,
+    stopTimer,
+  } = useCountdown({
+    initialSeconds: time,
+  });
+
+  useEffect(() => {
+    if (isInInitialState) {
+      setTime(0);
+    }
+  }, [isInInitialState]);
 
   return (
     <main className={styles.container} data-testid="home-container">
+      <div>
+        <form>
+          <label htmlFor="name">
+            <input
+              disabled={!isInInitialState && (isTimerRunning || isInPauseState)}
+              type="number"
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+            />
+            <p>{secondsToTime(timerCount)}</p>
+          </label>
+        </form>
+      </div>
       <button onClick={setTimer}>
         <Icon icon={isTimerRunning ? 'pause' : 'play2'} />
       </button>
-      <button onClick={resetTimer}>Reset</button>
-      <button disabled={!isTimerRunning} onClick={stopTimer}>
+      <button disabled={isInInitialState} onClick={stopTimer}>
         Stop
       </button>
       {isTimerRunning}
-      {timerCount}
     </main>
   );
 };
