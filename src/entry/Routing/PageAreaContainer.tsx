@@ -5,6 +5,8 @@ import { Home } from '../../sections/Home';
 import { Header } from '../../sections/Header';
 import { Footer } from '../../sections/Footer';
 
+import '../../assets/style.scss';
+
 const PageAreaContainer = () => (
   <>
     <Header />

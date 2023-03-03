@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icon } from '../../assets/uiComponents/Icon';
+import styles from './ButtonGroup.module.scss';
 
 type Props = {
   isTimerRunning: boolean;
@@ -15,14 +16,19 @@ const ButtonGroup: React.FC<Props> = ({
   setTimer,
 }) => {
   return (
-    <>
-      <button type="button" onClick={setTimer}>
-        <Icon icon={isTimerRunning ? 'pause' : 'play2'} />
+    <div className={styles.buttonGroupContainer}>
+      <button className={styles.btnPlay} type="button" onClick={setTimer}>
+        <Icon icon={isTimerRunning ? 'pause' : 'play2'} size={18} />
       </button>
-      <button disabled={isInInitialState} type="button" onClick={stopTimer}>
-        <Icon icon="stop" />
+      <button
+        className={styles.btnStop}
+        disabled={isInInitialState}
+        type="button"
+        onClick={stopTimer}
+      >
+        <Icon icon="stop" size={18} />
       </button>
-    </>
+    </div>
   );
 };
 

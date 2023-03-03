@@ -1,5 +1,6 @@
 import React from 'react';
 import { secondsToTime } from '../../helpers';
+import styles from './InputBar.module.scss';
 
 type Props = {
   isInInitialState: boolean;
@@ -19,10 +20,11 @@ const InputBar: React.FC<Props> = ({
   time,
 }) => {
   return (
-    <div>
+    <div className={styles.inputBarContainer}>
       <form>
         <label htmlFor="name">
           <input
+            className={styles.inputBar}
             disabled={!isInInitialState && (isTimerRunning || isInPauseState)}
             type="number"
             value={time}

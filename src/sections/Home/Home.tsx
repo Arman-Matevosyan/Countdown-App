@@ -34,7 +34,10 @@ const Home: React.FC = () => {
   return (
     <main data-testid="home-container">
       <div className={styles.container}>
-        <ProgressBar currentHeight={currentHeight} />
+        <ProgressBar
+          currentHeight={currentHeight}
+          isInInitialState={isInInitialState}
+        />
         <InputBar
           isInInitialState={isInInitialState}
           isInPauseState={isInPauseState}
