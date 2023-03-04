@@ -1,1 +1,1 @@
-export { secondsToTime } from './helpers';
+export { stringToSeconds } from './helpers';

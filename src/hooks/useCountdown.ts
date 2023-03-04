@@ -11,7 +11,9 @@ const useCountDown = ({
   const minMinToRun = 0;
 
   useEffect(() => {
-    setTimerCount(initialSeconds);
+    if (initialSeconds) {
+      setTimerCount(initialSeconds);
+    }
   }, [initialSeconds]);
 
   const tick = useCallback(
@@ -23,7 +25,7 @@ const useCountDown = ({
   );
 
   const setTimer = () => {
-    if (!isTimerRunning && initialSeconds && initialSeconds !== 0) {
+    if (!isTimerRunning && initialSeconds && initialSeconds > 0) {
       setRunning(true);
       setInitialeState(false);
     } else {
