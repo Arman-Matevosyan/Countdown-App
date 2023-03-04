@@ -7,7 +7,7 @@ describe('InputBar', () => {
     isInInitialState: true,
     timerCount: 0,
     setTime: jest.fn(),
-    time: '',
+    time: 10,
     isTimerRunning: false,
   };
 
@@ -31,19 +31,29 @@ describe('InputBar', () => {
     );
   });
 
-  test('should calls `setTime` function when input is changed', () => {
+  test('should call `setTime` function with correct value when input value changes', () => {
     render(<InputBar {...props} />);
-    const input = screen.getByTestId('number-input');
+    const input = screen.getByTestId('number-input') as HTMLInputElement;
 
-    fireEvent.change(input, { target: { value: '60' } });
-    expect(props.setTime).toHaveBeenCalledWith('60');
+    fireEvent.change(input, { target: { value: '01:30:00' } });
+
+    expect(props.setTime).toHaveBeenCalledTimes(1);
+    expect(props.setTime).toHaveBeenCalledWith(5400);
   });
 
-  test('should display the formatted time when not running', () => {
-    render(<InputBar {...props} time="60" timerCount={60} />);
+  test('should disable input field when timer is running', () => {
+    render(<InputBar {...props} isTimerRunning />);
 
-    const formattedTime = screen.getByTestId('formatted-time');
+    const input = screen.getByTestId('mock-input') as HTMLInputElement;
 
-    expect(formattedTime).toHaveTextContent('00 hr : 01 min : 00 sec');
+    expect(input.disabled).toBe(true);
+  });
+
+  test('should disable input field when not in initial state', () => {
+    render(<InputBar {...props} isInInitialState={false} />);
+
+    const input = screen.getByTestId('number-input') as HTMLInputElement;
+
+    expect(input.disabled).toBe(true);
   });
 });

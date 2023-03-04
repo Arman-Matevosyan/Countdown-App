@@ -43,6 +43,7 @@ const InputBar: React.FC<Props> = ({
         />
       ) : (
         <InputMask
+          data-testid="number-input"
           disabled={!isInInitialState}
           mask="99:99:99"
           maskChar="-"
