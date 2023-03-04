@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?dpqozh');
-  src:  url('fonts/icomoon.eot?dpqozh#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?dpqozh') format('truetype'),
-    url('fonts/icomoon.woff?dpqozh') format('woff'),
-    url('fonts/icomoon.svg?dpqozh#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?j9vy0w');
+  src:  url('fonts/icomoon.eot?j9vy0w#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?j9vy0w') format('truetype'),
+    url('fonts/icomoon.woff?j9vy0w') format('woff'),
+    url('fonts/icomoon.svg?j9vy0w#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,21 +25,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-play2:before {
-  content: "\ea17";
+.icon-arrow_down:before {
+  content: "\e903";
 }
 .icon-pause:before {
-  content: "\ea18";
+  content: "\e900";
 }
 .icon-stop:before {
-  content: "\ea19";
+  content: "\e901";
 }
-.icon-play3:before {
-  content: "\ea1e";
-}
-.icon-pause2:before {
-  content: "\ea1f";
-}
-.icon-stop2:before {
-  content: "\ea20";
+.icon-play:before {
+  content: "\e902";
 }

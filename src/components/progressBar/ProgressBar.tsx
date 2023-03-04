@@ -12,7 +12,8 @@ const ProgressBar: React.FC<Props> = ({ currentHeight, isInInitialState }) => {
       className={styles.countdownBox}
       data-testid="progressBar-container"
       style={{
-        border: !isInInitialState ? '1px solid white' : '',
+        border: !isInInitialState ? '1px solid #919191' : '',
+        borderRadius: '5px',
       }}
     >
       <div

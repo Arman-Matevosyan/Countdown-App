@@ -1,6 +1,6 @@
 .countdownBox {
-    width: 100px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     position: relative;
     margin: 0px auto;
 }
@@ -8,7 +8,18 @@
 .timeElapsed {
     height: 100%;
     width: 100%;
-    background-color: #D9D9D9;
+    background-color: #212121;
     bottom: 0px;
     position: absolute;
+    transition: height 1.2s ease;
+    animation: progressBarAnimation 1s ease;
 }
+
+@keyframes timeElapsed {
+    from {
+      height: 0%;
+    }
+    to {
+      height: 100%;
+    }
+  }

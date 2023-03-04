@@ -16,7 +16,11 @@ export const Tooltip: React.FC<Props> = ({
   return isVisible ? (
     <div className={styles.tooltipContainer}>
       <div className={styles.tooltip}>{children}</div>
-      {showTooltip && <div className={styles.tooltipText}>{text}</div>}
+      {showTooltip && (
+        <div className={styles.tooltipText}>
+          <p>{text}</p>
+        </div>
+      )}
     </div>
   ) : (
     children

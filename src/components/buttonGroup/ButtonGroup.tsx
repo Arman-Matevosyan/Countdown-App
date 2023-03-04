@@ -23,7 +23,12 @@ const ButtonGroup: React.FC<Props> = ({
         type="button"
         onClick={setTimer}
       >
-        <Icon icon={isTimerRunning ? 'pause' : 'play2'} size={18} />
+        <Icon
+          className={styles.playPauseIcon}
+          icon={isTimerRunning ? 'pause' : 'play'}
+          size={15}
+        />
+        <span>{!isTimerRunning ? "Let's Start" : 'Pause'}</span>
       </button>
       <button
         className={styles.btnStop}
@@ -32,7 +37,7 @@ const ButtonGroup: React.FC<Props> = ({
         type="button"
         onClick={stopTimer}
       >
-        <Icon icon="stop" size={18} />
+        <Icon className={styles.stopIcon} icon="stop" size={15} />
       </button>
     </div>
   );

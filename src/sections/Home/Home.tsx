@@ -3,6 +3,7 @@ import { ButtonGroup } from '../../components/buttonGroup';
 import { InputBar } from '../../components/inputBar';
 import { ProgressBar } from '../../components/progressBar';
 import { Tooltip } from '../../components/tooltip';
+import { tooltipText } from '../../constants';
 import { heightCalculator } from '../../helpers/helpers';
 import { useCountdown } from '../../hooks';
 import styles from './Home.module.scss';
@@ -26,10 +27,7 @@ const Home: React.FC = () => {
           })}
           isInInitialState={isInInitialState}
         />
-        <Tooltip
-          isVisible={isInInitialState}
-          text="Max allowed Numbers are 99:99:99"
-        >
+        <Tooltip isVisible={isInInitialState} text={tooltipText}>
           <InputBar
             isInInitialState={isInInitialState}
             isTimerRunning={isTimerRunning}
