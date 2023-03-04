@@ -7,7 +7,6 @@ const useCountDown = ({
 } = {}) => {
   const [timerCount, setTimerCount] = useState(initialSeconds);
   const [isTimerRunning, setRunning] = useState(initiallyRunning);
-  const [isInPauseState, setPauseState] = useState(false);
   const [isInInitialState, setInitialeState] = useState(true);
   const minMinToRun = 0;
 
@@ -24,12 +23,11 @@ const useCountDown = ({
   );
 
   const setTimer = () => {
-    if (!isTimerRunning && initialSeconds !== 0) {
+    console.log(initialSeconds);
+    if (!isTimerRunning && initialSeconds && initialSeconds !== 0) {
       setRunning(true);
       setInitialeState(false);
-      setPauseState(false);
     } else {
-      setPauseState(true);
       setRunning(false);
     }
   };
@@ -50,7 +48,6 @@ const useCountDown = ({
     isTimerRunning,
     timerCount,
     isInInitialState,
-    isInPauseState,
     stopTimer,
   };
 };

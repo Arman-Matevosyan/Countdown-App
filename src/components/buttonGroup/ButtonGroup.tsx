@@ -16,12 +16,18 @@ const ButtonGroup: React.FC<Props> = ({
   setTimer,
 }) => {
   return (
-    <div className={styles.buttonGroupContainer}>
-      <button className={styles.btnPlay} type="button" onClick={setTimer}>
+    <div className={styles.buttonGroupContainer} data-testid="btn-group">
+      <button
+        className={styles.btnPlay}
+        data-testid="btn-play"
+        type="button"
+        onClick={setTimer}
+      >
         <Icon icon={isTimerRunning ? 'pause' : 'play2'} size={18} />
       </button>
       <button
         className={styles.btnStop}
+        data-testid="btn-stop"
         disabled={isInInitialState}
         type="button"
         onClick={stopTimer}

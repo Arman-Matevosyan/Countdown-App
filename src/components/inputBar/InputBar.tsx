@@ -4,8 +4,6 @@ import styles from './InputBar.module.scss';
 
 type Props = {
   isInInitialState: boolean;
-  isTimerRunning: boolean;
-  isInPauseState: boolean;
   timerCount: number;
   setTime: (value: string) => void;
   time: string;
@@ -13,19 +11,18 @@ type Props = {
 
 const InputBar: React.FC<Props> = ({
   isInInitialState,
-  isTimerRunning,
-  isInPauseState,
   timerCount,
   setTime,
   time,
 }) => {
   return (
-    <div className={styles.inputBarContainer}>
+    <div className={styles.inputBarContainer} data-testid="inputBar-container">
       <form>
         <label htmlFor="name">
           <input
             className={styles.inputBar}
-            disabled={!isInInitialState && (isTimerRunning || isInPauseState)}
+            data-testid="number-input"
+            disabled={!isInInitialState}
             type="number"
             value={time}
             onChange={(e) => setTime(e.target.value)}
