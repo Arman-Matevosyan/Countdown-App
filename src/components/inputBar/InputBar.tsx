@@ -5,7 +5,7 @@ import styles from './InputBar.module.scss';
 type Props = {
   isInInitialState: boolean;
   timerCount: number;
-  setTime: (value: string) => void;
+  setTime: (e: any) => void;
   time: string;
 };
 

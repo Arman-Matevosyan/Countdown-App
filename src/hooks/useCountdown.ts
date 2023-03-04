@@ -23,7 +23,6 @@ const useCountDown = ({
   );
 
   const setTimer = () => {
-    console.log(initialSeconds);
     if (!isTimerRunning && initialSeconds && initialSeconds !== 0) {
       setRunning(true);
       setInitialeState(false);
