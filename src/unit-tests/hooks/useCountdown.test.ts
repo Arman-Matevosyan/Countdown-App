@@ -35,24 +35,6 @@ describe('useCountDown', () => {
     expect(result.current.timerCount).toBe(29);
   });
 
-  test('should reset the countdown when calling `resetTimer`', () => {
-    const { result } = renderHook(() => useCountDown({ initialSeconds: 30 }));
-
-    act(() => {
-      result.current.setTimer();
-    });
-
-    act(() => {
-      jest.advanceTimersByTime(1000);
-    });
-
-    act(() => {
-      result.current.resetTimer();
-    });
-
-    expect(result.current.timerCount).toBe(30);
-  });
-
   test('should stop the countdown when calling `stopTimer`', () => {
     const { result } = renderHook(() => useCountDown({ initialSeconds: 30 }));
 

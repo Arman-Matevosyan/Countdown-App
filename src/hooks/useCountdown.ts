@@ -43,7 +43,6 @@ const useCountDown = ({
 
   return {
     setTimer,
-    resetTimer,
     isTimerRunning,
     timerCount,
     isInInitialState,

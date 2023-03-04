@@ -2,24 +2,27 @@
     padding: 10px;
     margin: 0px auto;
 }
-.inputBar {
-    height: rem(44);
-    border: rem(2) solid c(dark, 0.1);
-    width: 100%;
-    padding: rem(12) rem(15);
-    font-size: rem(14);
-    font-family: v(font), sans-serif;
-    transition: border-color 300ms;
-    &:disabled {
-      color: c(dark, 0.5);
-      border: 1px solid white;
-      color: white;
-      &:hover {
-        cursor:not-allowed;
-      }
-    }
+
+input {
+  height: rem(44);
+  border: rem(2) solid c(dark, 0.1);
+  width: 100%;
+  padding: rem(12) rem(15);
+  font-size: rem(14);
+  font-family: v(font), sans-serif;
+  transition: border-color 300ms;
 }
 
+.mockInput {
+  &:disabled {
+    color: c(dark, 0.5);
+    border: 1px solid white;
+    color: white;
+    &:hover {
+      cursor:not-allowed;
+    }
+  }
+}
 label {
     font-size: rem(15);
     font-weight: 600;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { secondsToTime } from '../../helpers';
 import styles from './InputBar.module.scss';
 
@@ -17,6 +17,17 @@ const InputBar: React.FC<Props> = ({
   time,
   isTimerRunning,
 }) => {
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { value } = e.target;
+
+      if (Number(value) >= 0) {
+        setTime(value);
+      }
+    },
+    [setTime]
+  );
+
   return (
     <div className={styles.inputBarContainer} data-testid="inputBar-container">
       <form>
@@ -24,19 +35,19 @@ const InputBar: React.FC<Props> = ({
           {isTimerRunning ? (
             <input
               disabled
+              className={styles.mockInput}
               data-testid="mock-input"
               value={secondsToTime(timerCount)}
             />
           ) : (
             <>
               <input
-                className={styles.inputBar}
                 data-testid="number-input"
                 disabled={!isInInitialState}
                 placeholder="Enter seconds"
                 type="number"
                 value={time}
-                onChange={(e) => setTime(e.target.value)}
+                onChange={(e) => handleChange(e)}
               />
               <p data-testid="formatted-time">{secondsToTime(timerCount)}</p>
             </>

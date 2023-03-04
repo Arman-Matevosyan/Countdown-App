@@ -6,7 +6,7 @@ import { useCountdown, useHeightCalculator } from '../../hooks';
 import styles from './Home.module.scss';
 
 const Home: React.FC = () => {
-  const [time, setTime] = useState(0 as any);
+  const [time, setTime] = useState(0 as never);
 
   const { isTimerRunning, isInInitialState, timerCount, setTimer, stopTimer } =
     useCountdown({
