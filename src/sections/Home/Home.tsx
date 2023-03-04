@@ -28,6 +28,7 @@ const Home: React.FC = () => {
         />
         <InputBar
           isInInitialState={isInInitialState}
+          isTimerRunning={isTimerRunning}
           setTime={setTime}
           time={time}
           timerCount={timerCount}

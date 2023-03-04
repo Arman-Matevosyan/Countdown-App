@@ -7,6 +7,7 @@ type Props = {
   timerCount: number;
   setTime: (e: any) => void;
   time: string;
+  isTimerRunning: boolean;
 };
 
 const InputBar: React.FC<Props> = ({
@@ -14,20 +15,28 @@ const InputBar: React.FC<Props> = ({
   timerCount,
   setTime,
   time,
+  isTimerRunning,
 }) => {
   return (
     <div className={styles.inputBarContainer} data-testid="inputBar-container">
       <form>
         <label htmlFor="name">
-          <input
-            className={styles.inputBar}
-            data-testid="number-input"
-            disabled={!isInInitialState}
-            type="number"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-          />
-          <p>{secondsToTime(timerCount)}</p>
+          {isTimerRunning ? (
+            <input disabled value={secondsToTime(timerCount)} />
+          ) : (
+            <>
+              <input
+                className={styles.inputBar}
+                data-testid="number-input"
+                disabled={!isInInitialState}
+                placeholder="Enter seconds"
+                type="number"
+                value={time}
+                onChange={(e) => setTime(e.target.value)}
+              />
+              <p>{secondsToTime(timerCount)}</p>
+            </>
+          )}
         </label>
       </form>
     </div>
