@@ -22,7 +22,11 @@ const InputBar: React.FC<Props> = ({
       <form>
         <label htmlFor="name">
           {isTimerRunning ? (
-            <input disabled value={secondsToTime(timerCount)} />
+            <input
+              disabled
+              data-testid="mock-input"
+              value={secondsToTime(timerCount)}
+            />
           ) : (
             <>
               <input
@@ -34,7 +38,7 @@ const InputBar: React.FC<Props> = ({
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
               />
-              <p>{secondsToTime(timerCount)}</p>
+              <p data-testid="formatted-time">{secondsToTime(timerCount)}</p>
             </>
           )}
         </label>

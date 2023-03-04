@@ -1,5 +1,5 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom/client';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import AppEntryPoint from './entry/AppEntryPoint';
@@ -15,10 +15,12 @@ const AppEntryPointWrapper: React.FC = () => {
 };
 
 async function init() {
-  const rootNode = document.getElementById('app');
+  const rootNode = ReactDOM.createRoot(
+    document.getElementById('app') as HTMLElement
+  );
 
   if (rootNode) {
-    createRoot(rootNode).render(<AppEntryPointWrapper />);
+    rootNode.render(<AppEntryPointWrapper />);
   }
 }
 
