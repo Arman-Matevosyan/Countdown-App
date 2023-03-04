@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import InputMask from 'react-input-mask';
 import { stringToSeconds } from '../../helpers';
 import { secondsToTime } from '../../helpers/helpers';
@@ -9,6 +9,7 @@ type Props = {
   timerCount: number;
   setTime: (e: any) => void;
   isTimerRunning: boolean;
+  time: number;
 };
 
 const InputBar: React.FC<Props> = ({
@@ -16,24 +17,27 @@ const InputBar: React.FC<Props> = ({
   timerCount,
   setTime,
   isTimerRunning,
+  time,
 }) => {
   const [inputVal, setInputVal] = useState('');
 
-  const handleChange = (val: string) => {
-    const convertedSeconds = stringToSeconds(val);
+  const handleChange = useCallback(
+    (val: string) => {
+      setInputVal(val);
+      const convertedSeconds = stringToSeconds(val);
 
-    setInputVal(val);
-    if (convertedSeconds) {
-      setTime(convertedSeconds);
-    }
-  };
+      if (convertedSeconds) {
+        setTime(convertedSeconds);
+      }
+    },
+    [setTime]
+  );
 
   return (
     <div className={styles.inputBarContainer} data-testid="inputBar-container">
       {isTimerRunning ? (
         <input
           disabled
-          className={styles.mockInput}
           data-testid="mock-input"
           value={secondsToTime(timerCount)}
         />
@@ -43,7 +47,7 @@ const InputBar: React.FC<Props> = ({
           mask="99:99:99"
           maskChar="-"
           placeholder="hr:min:sec"
-          value={inputVal}
+          value={inputVal || secondsToTime(time)}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             handleChange(e.target.value)
           }

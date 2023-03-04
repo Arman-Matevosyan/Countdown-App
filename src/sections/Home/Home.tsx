@@ -34,6 +34,7 @@ const Home: React.FC = () => {
             isInInitialState={isInInitialState}
             isTimerRunning={isTimerRunning}
             setTime={setTime}
+            time={time}
             timerCount={timerCount}
           />
         </Tooltip>

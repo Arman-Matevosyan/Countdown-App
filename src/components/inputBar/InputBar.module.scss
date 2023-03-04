@@ -11,18 +11,16 @@ input {
   font-size: rem(14);
   font-family: v(font), sans-serif;
   transition: border-color 300ms;
-}
-
-.mockInput {
   &:disabled {
     color: c(dark, 0.5);
     border: 1px solid white;
     color: white;
     &:hover {
-      cursor:not-allowed;
+      cursor: not-allowed;
     }
   }
 }
+
 label {
     font-size: rem(15);
     font-weight: 600;
